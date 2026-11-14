@@ -69,8 +69,9 @@ module.exports = {
             }
           },
           400: {
-            description: 'Error si el año no es válido'
-          }
+  description: 'Error si el año no es válido',
+  content: { "application/json": { example: { error: "El año ingresado no es válido." } } }
+}
         }
       }
     }

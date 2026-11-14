@@ -22,18 +22,18 @@ app.get('/api/yo', (req, res) => {
 
 // --- RETO CLASE: Nivel 2 ---
 app.get('/api/edad/:anio', (req, res) => {
-    const anioNacimiento = parseInt(req.params.anio);
-    const anioActual = new Date().getFullYear();
+  const anioActual = new Date().getFullYear();
+  const anioNacimiento = Number(req.params.anio);
 
-    if (isNaN(anioNacimiento)) {
-        return res.status(400).json({ error: "El año ingresado no es válido." });
-    }
+  if (!Number.isInteger(anioNacimiento) || anioNacimiento < 1900 || anioNacimiento > anioActual) {
+    return res.status(400).json({ error: `El año debe ser un número entre 1900 y ${anioActual}.` });
+  }
 
-    const edad = anioActual - anioNacimiento;
-    res.json({
-        anioNacimiento: anioNacimiento,
-        edadCalculada: edad
-    });
+  res.json({ anioNacimiento, edadCalculada: anioActual - anioNacimiento });
+});
+
+app.get('/', (req, res) => {
+  res.json({ message: 'API Lukita funcionando', docs: '/api-docs' });
 });
 
 app.listen(port, () => console.log("API Lista"));
