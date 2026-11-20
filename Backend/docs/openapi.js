@@ -1,9 +1,9 @@
-module.exports = {
+export default {
   openapi: '3.0.0',
   info: {
-    title: 'My API',
+    title: 'Lukita API',
     version: '1.0.0',
-    description: 'API para saludar y conocer datos del estudiante', 
+    description: 'API de Lukita (finanzas) y retos de clase. Las rutas /api/perfiles/... requieren Authorization: Bearer <token>.', 
   },
   paths: {
     "/api/saludo": {

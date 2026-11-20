@@ -1,10 +1,9 @@
-const { PrismaClient } = require("@prisma/client");
-const { PrismaNeon } = require("@prisma/adapter-neon");
+import 'dotenv/config'
+import { PrismaClient } from '@prisma/client'
+import { PrismaNeon } from '@prisma/adapter-neon'
 
-const adapter = new PrismaNeon({
-  connectionString: process.env.DATABASE_URL,
-});
+// Una sola instancia compartida por todo el proceso.
+// Prisma 7 necesita un adapter; aqui usamos el de Neon.
+const adapter = new PrismaNeon({ connectionString: process.env.DATABASE_URL })
 
-const prisma = new PrismaClient({ adapter });
-
-module.exports = prisma;
+export const prisma = new PrismaClient({ adapter })
